@@ -1,0 +1,52 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je emon kuno number x ache ki na jar binary
+    representation ke reverse kore original representation er sathe xor korle
+    output n pawa jabe . 
+ 
+    Dhori kuno ekta number er binary representation 101101110000001 . Eitar reverse
+    er sathe xor operation kori 
+ 
+    101101110000001
+    100000011101101
+__________________________
+(^) 001101101101100
+ 
+Ekhane dekha jacche je duita number er moddhe X-or operation korle eder jei result hoy
+ta ekta palindromic number . Karon ekta ongshe s[i] ^ s[n-i+1] hocche abar arekta ongshe
+s[n-i+1] ^ s[i] hocche . Tar mane duita koira bit palindromic position er same hobe .
+Tar mane amader ke input n dibe tar digit gula palindromic form e thakte hobe . Ar na hole
+gothon kora shomvob na . Arekta condition check korte hobe je jodi numberLength odd hoy
+and majkhaner bit ta on thake tahole emon palindrome o bananu jabe na . Karon majkhaner 
+bit ta 1^1 ba 0^0 diye toiri hobe ja dui case e 0 . Tai cntOfOne odd hole impossible .
+ 
+*/
+ 
+string decToBinary(ll n){
+    string s = string(61,'0') ;
+    for(ll i = 0 ; i < 61 ; i++){
+        ll mask = (1LL << i) ;
+        if(mask&n) s[i] = '1' ;
+    }
+    flip(s) ; RemoveLeadingZeros(s) ;
+    return s ; 
+}
+ 
+void giveMeMyGloryBack() {
+    ll n ; cin >> n ; string str = decToBinary(n) ;
+    if(n==0){
+        yes ; return ;
+    }
+    ll l = 0 ; ll r = len(str)-1 ; ll one = count(all(str),'1') ;
+    if(isOdd(one)){
+        no ; return ;
+    }
+    while(str[r]=='0') r-- ;
+    while(l<=r){
+        if(str[l]==str[r]){
+            l++ ; r-- ;
+        }else{
+            no ; return ;
+        }
+    }
+    yes ;
+}
