@@ -1,0 +1,32 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je 5000 worker ek mash kaaj korbe ekta building
+    bananur jonne . Kun worker kun kun din kaaj korbe ta array akare dewa thakbe . 
+    Amader bolte duijon worker er shobcheye beshi koydin dekha hobe .
+
+*/
+
+void giveMeMyGloryBack() {
+    ll numberOfWorkers ; cin >> numberOfWorkers ;
+    vll ans ;
+    for(int worker = 0 ; worker < numberOfWorkers ; worker++){
+        ll mask = 0 ; ll workingDays ; cin >> workingDays ;
+        for(int days = 0 ; days < workingDays ; days++){
+            ll thDay ; cin >> thDay ; 
+            mask |= (1LL << thDay) ;
+        }
+        ans.pb(mask) ;
+    }
+
+    ll n = len(ans) ; ll maxCommonDays = 0LL ;
+
+    for(int i = 0 ; i < n ; i++){
+        for(int j = i+1 ; j < n ; j++){
+            ll commonDays = ans[i] & ans[j] ;
+            ll setbits = countsetbitsll(commonDays) ;
+            maxCommonDays = max(maxCommonDays,setbits) ;
+        }
+    }
+
+    cout << maxCommonDays << endl ;
+
+}
