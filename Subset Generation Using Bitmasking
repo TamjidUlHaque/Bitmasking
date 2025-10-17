@@ -1,0 +1,22 @@
+/*Intuition :-
+    Subset Generation Using BitMasking . Time Complexity O(n*(2^n)) .
+
+*/
+
+void giveMeMyGloryBack() {
+    ll n ; cin >> n ; vll vec(n) ; tamjid(n) cin >> vec[i] ;
+    ll subsetCount = (1LL<<len(vec)) ; vector<vll> subsets ;
+    for(ll mask = 0 ; mask < subsetCount ; mask++){
+        vll subset ;
+        for(ll idx = 0 ; idx < len(vec) ; idx++){
+            if( ( mask & (1LL<<idx)) !=0 ){
+                subset.pb(vec[idx]) ;
+            }
+        }
+        subsets.pb(subset) ;
+    }
+    for(auto subset:subsets){
+        for(auto val:subset) cout << val << gap ;
+            sesh ;
+    }
+}
