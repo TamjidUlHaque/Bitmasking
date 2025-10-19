@@ -1,0 +1,64 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je amake n theke boro ekta ekta value m print 
+    korte hobe jeno (n & (n+1) & (n+2) & (n+3) ... & m == x) hoy and m er value ta jeno
+    minimal possible value hoy .
+
+    Ei proshner maddhome ami Ericchto er ekta video deikkha sikhte parsi onek boro range
+    er moddhe shobgula value er And er result koto eita O(60) e kemne calculate kore . 
+    Ekhane muloto Bitwise And er je property ta loiya calculation kora hoise oi property
+    ta holo Joto beshi songkha er moddhe BITWISE AND operation kora hoy value toto beshi
+    value komte thake . Ei monotonic property use koira ei question er moddhe Binary Search
+    chalanu hoise . 
+
+    Low value ekhane given number , Binary Search er maddhome ans ta khujte high value hishabe
+    proshne dewa highest value 5e18 ke dhora hoise . 
+
+    AND operation er hishab ta jei intuition er upore kora hoise ta holo shobar prothom je jaygay
+    bit ta match hobe na erpore jayga gula teh ar kuno setBit pawa shomvob na . Orthat bitwise and
+    kebol matro ekta range of prefix bit er jonno setBit dey . Suffix er ta change hote thake onoboroto.
+
+    1100 1010100101
+
+    1100 0111111111
+
+    Ekhane second number theke & kore kore first number jete gele boro number er bit ta first 0 tar
+    jonno off hoye jabe . Ar off bit ta jei operation e 1 hobe thik shei operation e erporer shokol
+    value 0 hoye jabe . 
+
+    Mane 
+
+    1100 (0)11111111 boro value er bit ta ke off kore dibe .
+    1100 1(00000000) boro value er porer shob bit ke off kore dibe.
+*/
+
+ll AndOperationBetweenLtoR(ll num , ll ans){ 
+    ll rangeAndValue = 0LL ;
+    for(ll i = 62 ; i >= 0 ; i--){
+        ll mask = (1LL<<i) ;
+        if((num&mask) != (ans&mask)) break ;
+        else{
+            if((num&mask)) rangeAndValue |= mask ;
+        }
+    }
+    return rangeAndValue ;
+}
+
+void giveMeMyGloryBack() {
+    ll n , x ; cin >> n >> x ; ll ans = -1 ;
+    if(n<x) cout << -1 << endl ;
+    else{
+        ll low = n ; ll high = 5e18 ;
+        while(low<=high){
+            ll mid = low + (high-low)/2 ;
+            ll temp = AndOperationBetweenLtoR(n,mid) ;
+            if(temp==x){
+                ans = mid ; high = mid-1 ;
+            }else if(temp<x){
+                high = mid-1 ;
+            }else{
+                low = mid+1 ;
+            }
+        }
+        cout << ans << endl ;
+    }
+}
