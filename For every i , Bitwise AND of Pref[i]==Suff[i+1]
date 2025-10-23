@@ -1,0 +1,55 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je amake ekta array dewa ache . Er moddhe n songkhok
+    element ache . Eder ke ami amar iccha moto sajate parbo . Amake bolte hobe total koto vabe
+    array ta ke sajanu shomvob jevabe sajale Array er 1st index theke ith index value porjonto
+    bitwise and value joto hobe . i+1 theke n porjonto bitwise value toto hobe . 
+
+    Ekhane basic observation ta holo jodi a > b hoy tahole value of (a & b <= b) . Orthat joto beshi
+    songkhok element ke bitwise and er vitore newa hobe bitwise and er value toto komte thakbe .
+    Tar mane jodi amra 1 theke n porjonto ekta prefix array gothon kori pref[i] <= pref[i-1] for every i.
+    Abar jodi suffix array gothon kori bitwise and er tahole suff[i]<=suff[i+1] . Tar mane pref array ta
+    holo non increasing array ar suffix array ta holo non decreasing array . Ekhane jodi kuno ekta
+    arrangement er jonne for every i , suff[i+1]==pref[i] hoy tahole oi arrangement ta valid . Ar jodi 
+    shob value er jonno ei condition ta mene chole tahole a.front()==a.back()==(bitwise AND of the whole a)
+    hobe . Karon pref[n-1] == suff[n] ar ei duitar & korle pref[n]==a[n] hobe . Tarmane pref and
+    suffix ke obossoi pref[i]==suff[i+1] e je value ta hoy ta diye shuru and sesh hote hobe . Ei intuition
+    ta ke kajiye lagiye problem ta solve kora hoise . Jodi x total number of needed element hoy ar jodi
+    x < 2 hoy tahole 0 print korte hobe . Karon valid arrangement impossible . 
+    Jodi x >= 2 hoy tahole prothom position e rakha jabe x ta target value , last position e rakha jabe 
+    x-1 ta target value . Ar majkhane ja khushi rakha jabe .
+    Orthat 6 size er array er possibility , x * (n-2) * (n-3) * (n-4) * (n-5) * (x-1)
+    Jodi target element 3 ta thake tahole , 3 * (4 * 3 * 2 * 1) * 2 = 3 * 4! * 2 .
+*/
+
+const ll MOD = 1e9+7 ;
+const ll N = 1e6 ;
+ll fact[N] ;
+
+void giveMeMyGloryBack() { 
+    ll n ; cin >> n ; vll vec(n) ; tamjid(n) cin >> vec[i] ;
+    ll ans = vec.front() ; map<ll,ll> mp ;
+    tamjid(n){
+        mp[vec[i]]++ ; ans &= vec[i] ;
+    }
+    ll x = mp[ans] ;
+    if(x<2) cout << 0 << endl ;
+    else{
+        cout << ((x * (x-1))%MOD * fact[n-2])%MOD << endl ;
+    }
+}
+
+
+int main(){
+    Bismillah() ;
+
+    fact[0] = fact[1] = 1LL ;
+
+    for(ll i = 2 ; i < 1e6 ; i++){
+        fact[i] = ((i%MOD)*((fact[i-1])%MOD))%MOD ;
+    }
+
+    testloop giveMeMyGloryBack() ;
+
+
+    Alhamdulillah ;
+}
